@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1301px;
+            height: 805px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/nemaNNV_1.js"></script>
+        <script src="data/reitirogsnidreitirNVland_2022waypoints_2.js"></script>
+        <script src="data/reitirogsnidNordvesturlandwaypoints_3.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[65.04224544098952,-20.515317690824986],[65.52538054034771,-18.66026042981042]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_ESRINationalGeographic_0');
+        map.getPane('pane_ESRINationalGeographic_0').style.zIndex = 400;
+        var layer_ESRINationalGeographic_0 = L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_ESRINationalGeographic_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_ESRINationalGeographic_0;
+        map.addLayer(layer_ESRINationalGeographic_0);
+        function pop_nemaNNV_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['objectid'] !== null ? autolinker.link(feature.properties['objectid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['uuid'] !== null ? autolinker.link(feature.properties['uuid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fitjuflokk'] !== null ? autolinker.link(feature.properties['fitjuflokk'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['stjornsysl'] !== null ? autolinker.link(feature.properties['stjornsysl'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['logreglu_n'] !== null ? autolinker.link(feature.properties['logreglu_n'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nafnfitju'] !== null ? autolinker.link(feature.properties['nafnfitju'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ath'] !== null ? autolinker.link(feature.properties['ath'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['vinnslufer'] !== null ? autolinker.link(feature.properties['vinnslufer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dagsheimil'] !== null ? autolinker.link(feature.properties['dagsheimil'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dagsinnset'] !== null ? autolinker.link(feature.properties['dagsinnset'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dagsleidre'] !== null ? autolinker.link(feature.properties['dagsleidre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dagsuppfae'] !== null ? autolinker.link(feature.properties['dagsuppfae'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nakvaemnix'] !== null ? autolinker.link(feature.properties['nakvaemnix'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['heimild'] !== null ? autolinker.link(feature.properties['heimild'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gagnaeigan'] !== null ? autolinker.link(feature.properties['gagnaeigan'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gagnasafn'] !== null ? autolinker.link(feature.properties['gagnasafn'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_nemaNNV_1_0() {
+            return {
+                pane: 'pane_nemaNNV_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(190,207,80,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_nemaNNV_1');
+        map.getPane('pane_nemaNNV_1').style.zIndex = 401;
+        map.getPane('pane_nemaNNV_1').style['mix-blend-mode'] = 'normal';
+        var layer_nemaNNV_1 = new L.geoJson(json_nemaNNV_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_nemaNNV_1',
+            layerName: 'layer_nemaNNV_1',
+            pane: 'pane_nemaNNV_1',
+            onEachFeature: pop_nemaNNV_1,
+            style: style_nemaNNV_1_0,
+        });
+        bounds_group.addLayer(layer_nemaNNV_1);
+        map.addLayer(layer_nemaNNV_1);
+        function pop_reitirogsnidreitirNVland_2022waypoints_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ele'] !== null ? autolinker.link(feature.properties['ele'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['time'] !== null ? autolinker.link(feature.properties['time'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['magvar'] !== null ? autolinker.link(feature.properties['magvar'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['geoidheight'] !== null ? autolinker.link(feature.properties['geoidheight'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cmt'] !== null ? autolinker.link(feature.properties['cmt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['desc'] !== null ? autolinker.link(feature.properties['desc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['src'] !== null ? autolinker.link(feature.properties['src'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_href'] !== null ? autolinker.link(feature.properties['link1_href'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_text'] !== null ? autolinker.link(feature.properties['link1_text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_type'] !== null ? autolinker.link(feature.properties['link1_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_href'] !== null ? autolinker.link(feature.properties['link2_href'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_text'] !== null ? autolinker.link(feature.properties['link2_text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_type'] !== null ? autolinker.link(feature.properties['link2_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sym'] !== null ? autolinker.link(feature.properties['sym'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fix'] !== null ? autolinker.link(feature.properties['fix'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sat'] !== null ? autolinker.link(feature.properties['sat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['hdop'] !== null ? autolinker.link(feature.properties['hdop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['vdop'] !== null ? autolinker.link(feature.properties['vdop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pdop'] !== null ? autolinker.link(feature.properties['pdop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ageofdgpsdata'] !== null ? autolinker.link(feature.properties['ageofdgpsdata'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dgpsid'] !== null ? autolinker.link(feature.properties['dgpsid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gpxx_WaypointExtension'] !== null ? autolinker.link(feature.properties['gpxx_WaypointExtension'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_reitirogsnidreitirNVland_2022waypoints_2_0() {
+            return {
+                pane: 'pane_reitirogsnidreitirNVland_2022waypoints_2',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,82,45,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_reitirogsnidreitirNVland_2022waypoints_2');
+        map.getPane('pane_reitirogsnidreitirNVland_2022waypoints_2').style.zIndex = 402;
+        map.getPane('pane_reitirogsnidreitirNVland_2022waypoints_2').style['mix-blend-mode'] = 'normal';
+        var layer_reitirogsnidreitirNVland_2022waypoints_2 = new L.geoJson(json_reitirogsnidreitirNVland_2022waypoints_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_reitirogsnidreitirNVland_2022waypoints_2',
+            layerName: 'layer_reitirogsnidreitirNVland_2022waypoints_2',
+            pane: 'pane_reitirogsnidreitirNVland_2022waypoints_2',
+            onEachFeature: pop_reitirogsnidreitirNVland_2022waypoints_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_reitirogsnidreitirNVland_2022waypoints_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_reitirogsnidreitirNVland_2022waypoints_2);
+        map.addLayer(layer_reitirogsnidreitirNVland_2022waypoints_2);
+        function pop_reitirogsnidNordvesturlandwaypoints_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ele'] !== null ? autolinker.link(feature.properties['ele'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['time'] !== null ? autolinker.link(feature.properties['time'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['magvar'] !== null ? autolinker.link(feature.properties['magvar'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['geoidheight'] !== null ? autolinker.link(feature.properties['geoidheight'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cmt'] !== null ? autolinker.link(feature.properties['cmt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['desc'] !== null ? autolinker.link(feature.properties['desc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['src'] !== null ? autolinker.link(feature.properties['src'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_href'] !== null ? autolinker.link(feature.properties['link1_href'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_text'] !== null ? autolinker.link(feature.properties['link1_text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_type'] !== null ? autolinker.link(feature.properties['link1_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_href'] !== null ? autolinker.link(feature.properties['link2_href'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_text'] !== null ? autolinker.link(feature.properties['link2_text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_type'] !== null ? autolinker.link(feature.properties['link2_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sym'] !== null ? autolinker.link(feature.properties['sym'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fix'] !== null ? autolinker.link(feature.properties['fix'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sat'] !== null ? autolinker.link(feature.properties['sat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['hdop'] !== null ? autolinker.link(feature.properties['hdop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['vdop'] !== null ? autolinker.link(feature.properties['vdop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pdop'] !== null ? autolinker.link(feature.properties['pdop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ageofdgpsdata'] !== null ? autolinker.link(feature.properties['ageofdgpsdata'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dgpsid'] !== null ? autolinker.link(feature.properties['dgpsid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gpxx_WaypointExtension'] !== null ? autolinker.link(feature.properties['gpxx_WaypointExtension'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['wptx1_WaypointExtension'] !== null ? autolinker.link(feature.properties['wptx1_WaypointExtension'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ctx_CreationTimeExtension'] !== null ? autolinker.link(feature.properties['ctx_CreationTimeExtension'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_reitirogsnidNordvesturlandwaypoints_3_0() {
+            return {
+                pane: 'pane_reitirogsnidNordvesturlandwaypoints_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(213,180,60,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_reitirogsnidNordvesturlandwaypoints_3');
+        map.getPane('pane_reitirogsnidNordvesturlandwaypoints_3').style.zIndex = 403;
+        map.getPane('pane_reitirogsnidNordvesturlandwaypoints_3').style['mix-blend-mode'] = 'normal';
+        var layer_reitirogsnidNordvesturlandwaypoints_3 = new L.geoJson(json_reitirogsnidNordvesturlandwaypoints_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_reitirogsnidNordvesturlandwaypoints_3',
+            layerName: 'layer_reitirogsnidNordvesturlandwaypoints_3',
+            pane: 'pane_reitirogsnidNordvesturlandwaypoints_3',
+            onEachFeature: pop_reitirogsnidNordvesturlandwaypoints_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_reitirogsnidNordvesturlandwaypoints_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_reitirogsnidNordvesturlandwaypoints_3);
+        map.addLayer(layer_reitirogsnidNordvesturlandwaypoints_3);
+        setBounds();
+        var i = 0;
+        layer_reitirogsnidreitirNVland_2022waypoints_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-weight: bold; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_reitirogsnidreitirNVland_2022waypoints_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_reitirogsnidNordvesturlandwaypoints_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_reitirogsnidNordvesturlandwaypoints_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_reitirogsnidreitirNVland_2022waypoints_2,layer_reitirogsnidNordvesturlandwaypoints_3]);
+        map.on("zoomend", function(){
+            resetLabels([layer_reitirogsnidreitirNVland_2022waypoints_2,layer_reitirogsnidNordvesturlandwaypoints_3]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_reitirogsnidreitirNVland_2022waypoints_2,layer_reitirogsnidNordvesturlandwaypoints_3]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_reitirogsnidreitirNVland_2022waypoints_2,layer_reitirogsnidNordvesturlandwaypoints_3]);
+        });
+        </script>
+    </body>
+</html>
